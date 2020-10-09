@@ -1,13 +1,15 @@
 import "reflect-metadata";
 import * as express from "express";
-import * as bodyParser from "body-parser";
-import Routes from "./routes";
 import { createConnection } from "typeorm";
+import * as cors from "cors";
+// import * as bodyParser from "body-parser";
+import Routes from "./routes";
 
 const App = express();
 
 createConnection().then(() => console.log("BD está conectado"));
 
+App.use(cors({ origin: "*" }));
 App.use(express.json());
 App.use(Routes);
 
